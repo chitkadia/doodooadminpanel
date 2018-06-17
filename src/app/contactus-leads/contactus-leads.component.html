@@ -1,0 +1,94 @@
+<div class="main-content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header card-header-danger">
+                        <div style="width: 90%;float: left;">
+                            <h4 class="card-title ">Contact Us Leads</h4>
+                            <p class="card-category"> Find the contact leads here</p>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table class="table">
+                                <thead class=" text-primary">
+                                    <th>
+                                        ID
+                                    </th>
+                                    <th>
+                                        Name
+                                    </th>
+                                    <th>
+                                        Email
+                                    </th>
+                                    <th>
+                                        Address
+                                    </th>
+                                    <th>
+                                        City
+                                    </th>
+                                    <th>
+                                        Contact Number
+                                    </th>
+                                    <th>
+                                        Message
+                                    </th>
+                                    <th>
+                                        Contact Date
+                                    </th>
+                                </thead>
+                                <tbody *ngIf="show_spinner;else record_tbl">
+                                    <tr>
+                                        <td colspan="8">
+                                            <mat-spinner></mat-spinner>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                                <ng-template #record_tbl>
+                                    <tbody *ngIf="rows?.length;else no_data_templ">
+                                        <tr *ngFor="let row of rows; let rowcount = index">
+                                            <td>
+                                                {{(cur_page-1)*page_size+rowcount+1}}
+                                            </td>
+                                            <td>
+                                                {{row.name ? row.name : 'N/A'}}
+                                            </td>
+                                            <td>
+                                                {{row.email ? row.email : 'N/A'}}
+                                            </td>
+                                            <td>
+                                                {{row.address ? row.address : 'N/A'}}
+                                            </td>
+                                            <td>
+                                                {{row.city ? row.city : 'N/A'}}
+                                            </td>
+                                            <td>
+                                                {{row.contact_no ? row.contact_no : 'N/A'}}
+                                            </td>
+                                            <td>
+                                                {{row.message ? row.message : 'N/A'}}
+                                            </td>
+                                            <td>
+                                                {{row.created_date ? row.created_date : 'N/A'}}
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </ng-template>
+                                <tbody>
+                                    <ng-template #no_data_templ>
+                                        <tr>
+                                            <td colspan="8" class="text-center">
+                                                No Record found
+                                            </td>
+                                        </tr>
+                                    </ng-template>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

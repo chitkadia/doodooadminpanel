@@ -1,0 +1,85 @@
+<div class="main-content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header card-header-danger">
+                        <div style="width: 90%;float: left;">
+                            <h4 class="card-title ">Product Categories</h4>
+                            <p class="card-category"> Categories of the product ex:- book, toy etc...</p>
+                        </div>
+                        <div style="width: 10%;float: right;">
+                            <i class="material-icons pointer-class" style="font-size: 2rem; margin: 10px;" matTooltip="Add" [matTooltipPosition]="'above'" (click)="openDialog()">add_circle</i>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table class="table">
+                                <thead class=" text-primary">
+                                    <th>
+                                        ID
+                                    </th>
+                                    <th>
+                                        Name
+                                    </th>
+                                    <th>
+                                        Status
+                                    </th>
+                                    <th>
+                                        Last Modified
+                                    </th>
+                                    <th>
+                                        Action
+                                    </th>
+                                </thead>
+                                <tbody *ngIf="show_spinner;else record_tbl">
+                                    <tr>
+                                        <td colspan="4">
+                                            <mat-spinner></mat-spinner>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                                <ng-template #record_tbl>
+                                    <tbody *ngIf="rows?.length;else no_data_templ">
+                                        <tr *ngFor="let row of rows; let rowcount = index">
+                                            <td>
+                                                {{(cur_page-1)*page_size+rowcount+1}}
+                                            </td>
+                                            <td>
+                                                {{row.category_name ? row.category_name : 'N/A'}}
+                                            </td>
+                                            <td>
+                                                <ng-template [ngIf]="row.status == 'STATUS_ACTIVE'">
+                                                    <span class="badge badge-success pointer-class" (click)="updateStatus(row.status, row.id)">Active</span>
+                                                </ng-template>
+                                                <ng-template [ngIf]="row.status == 'STATUS_INACTIVE'">
+                                                    <span class="badge badge-secondary pointer-class" (click)="updateStatus(row.status, row.id)">Inactive</span>
+                                                </ng-template>
+                                            </td>
+                                            <td>
+                                                {{row.modified_date ? row.modified_date : 'N/A'}}
+                                            </td>
+                                            <td class="text-primary">
+                                                <i class="material-icons pointer-class" matTooltip="Edit" [matTooltipPosition]="'above'" (click)="updateProductCategory(row.id)">create</i>&nbsp;
+                                                <i class="material-icons pointer-class" matTooltip="Delete" [matTooltipPosition]="'above'" (click)="deleteProductCategory(row.id)">delete_sweep</i>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </ng-template>
+                                <tbody>
+                                    <ng-template #no_data_templ>
+                                        <tr>
+                                            <td colspan="4" class="text-center">
+                                                No Record found
+                                            </td>
+                                        </tr>
+                                    </ng-template>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,82 @@
+<div class="main-content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header card-header-danger">
+                        <div style="width: 90%;float: left;">
+                            <h4 class="card-title ">Order List</h4>
+                            <p class="card-category"> List of orders, latest first</p>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table class="table">
+                                <thead class=" text-primary">
+                                    <th>
+                                        ID
+                                    </th>
+                                    <th>
+                                        User ID
+                                    </th>
+                                    <th>
+                                        Order ID
+                                    </th>
+                                    <th>
+                                        Customer ID
+                                    </th>
+                                    <th>
+                                        Amount
+                                    </th>
+                                    <th>
+                                        Transaction Date
+                                    </th>
+                                </thead>
+                                <tbody *ngIf="show_spinner;else record_tbl">
+                                    <tr>
+                                        <td colspan="7">
+                                            <mat-spinner></mat-spinner>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                                <ng-template #record_tbl>
+                                    <tbody *ngIf="rows?.length;else no_data_templ">
+                                        <tr *ngFor="let row of rows; let rowcount = index">
+                                            <td>
+                                                {{(cur_page-1)*page_size+rowcount+1}}
+                                            </td>
+                                            <td>
+                                                {{row.user_id}}
+                                            </td>
+                                            <td>
+                                                {{row.order_id}}
+                                            </td>
+                                            <td>
+                                                {{row.customer_id}}
+                                            </td>
+                                            <td>
+                                                &#x20b9; {{row.transaction_amount}}
+                                            </td>
+                                            <td>
+                                                {{row.transaction_date}}
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </ng-template>
+                                <tbody>
+                                    <ng-template #no_data_templ>
+                                        <tr>
+                                            <td colspan="7" class="text-center">
+                                                No Record found
+                                            </td>
+                                        </tr>
+                                    </ng-template>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

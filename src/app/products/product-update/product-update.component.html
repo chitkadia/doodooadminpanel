@@ -1,0 +1,87 @@
+<div class="main-content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header card-header-danger">
+                        <h4 class="card-title">Update Product</h4>
+                        <p class="card-category">Modify product details</p>
+                    </div>
+                    <div class="card-body">
+                        <form [formGroup]="product_add" (ngSubmit)="updateProductDetails(product_add)" #formDir="ngForm">
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <mat-form-field>
+                                        <mat-select (selectionChange)="getSubCategory($event)" placeholder="Product Category" formControlName="product_category_id"
+                                            #product_category_id>
+                                            <mat-option *ngFor="let category of categories" [value]="category.id">
+                                                {{ category.category_name }}
+                                            </mat-option>
+                                        </mat-select>
+                                    </mat-form-field>
+                                </div>
+                                <div class="col-md-4">
+                                    <mat-form-field>
+                                        <mat-select placeholder="Product Sub Category" formControlName="product_sub_category_id" #product_sub_category_id multiple>
+                                            <mat-option *ngFor="let sub_cat of sub_categories" [value]="sub_cat.id">
+                                                {{ sub_cat.sub_category_name }}
+                                            </mat-option>
+                                        </mat-select>
+                                    </mat-form-field>
+                                </div>
+                                <div class="col-md-4">
+                                    <mat-form-field>
+                                        <mat-select placeholder="Product Age Group" formControlName="age_group" #age_group>
+                                            <mat-option *ngFor="let age of age_group_cat" [value]="age.id">
+                                                {{ age.age_category_name }}
+                                            </mat-option>
+                                        </mat-select>
+                                    </mat-form-field>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-10">
+                                    <mat-form-field class="example-full-width">
+                                        <input matInput placeholder="Product Name" type="text" formControlName="product_name" #peoduct_name>
+                                    </mat-form-field>
+                                </div>
+                                <div class="col-md-2">
+                                    <mat-form-field class="example-full-width">
+                                        <input matInput placeholder="Product Price" type="text" formControlName="product_price" #product_price>
+                                    </mat-form-field>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <mat-form-field class="example-full-width">
+                                        <input matInput placeholder="Product Amazon Link" type="text" formControlName="product_amazon_link" #product_amazon_link>
+                                    </mat-form-field>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <label>Product Short Description</label>
+                                    <mat-form-field class="example-full-width">
+                                        <textarea matInput placeholder="Lamborghini Mercy, Your chick she so thirsty, I'm in that two seat Lambo." formControlName="product_short_description"
+                                            #product_short_description></textarea>
+                                    </mat-form-field>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <label>Product Description</label>
+                                    <mat-form-field class="example-full-width">
+                                        <textarea matInput placeholder="Lamborghini Mercy, Your chick she so thirsty, I'm in that two seat Lambo." formControlName="product_description"
+                                            #product_description></textarea>
+                                    </mat-form-field>
+                                </div>
+                            </div>
+                            <button mat-raised-button type="submit" [disabled]="!product_add.valid" class="btn btn-danger pull-right">Update Product</button>
+                            <div class="clearfix"></div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

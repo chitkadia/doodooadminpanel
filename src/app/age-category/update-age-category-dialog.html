@@ -1,0 +1,19 @@
+<h1 mat-dialog-title>Update Age Category</h1>
+<ng-template [ngIf]="!start_loader">
+<form [formGroup]="age_cat_add" (ngSubmit)="updateAgeCategory(age_cat_add)" #formDir="ngForm">
+    <div mat-dialog-content>
+        <p>Specify category name</p>
+        <mat-form-field appearance="outline">
+            <mat-label>Add Age Category</mat-label>
+            <input matInput formControlName="age_category" #age_category placeholder="Age Category">
+        </mat-form-field>
+    </div>
+    <div mat-dialog-actions>
+        <span (click)="onNoClick(false)" class="mrgn-all-xs mat-button mat-warn" color="warn" md-button=""><span class="mat-button-wrapper">Close</span><div class="mat-button-ripple mat-ripple" md-ripple=""></div><div class="mat-button-focus-overlay"></div></span>
+        <button mat-button [disabled]="!age_cat_add.valid" cdkFocusInitial>Update</button>
+    </div>
+</form>
+</ng-template>
+<ng-template [ngIf]="start_loader">
+    <mat-spinner></mat-spinner>
+</ng-template>
